@@ -1,0 +1,26 @@
+name: Sync macOS ARM64 JBR
+
+on:
+  push:
+    paths:
+      - .github/workflows/sync-macos-jbr.yml
+
+permissions:
+  contents: write
+
+jobs:
+  upload-macos-jbr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download JetBrains Runtime 21
+        run: |
+          curl -fL --retry 3 --retry-delay 2 \
+            -o jre-macos-arm64.tar.gz \
+            https://github.com/JetBrains/JetBrainsRuntime/releases/download/jbr-release-21.0.11b1163.116/jbr-21.0.11-osx-aarch64-b1163.116.tar.gz
+          sha256sum jre-macos-arm64.tar.gz
+
+      - name: Upload release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload v1.0.0 jre-macos-arm64.tar.gz --repo "${{ github.repository }}" --clobber
