@@ -16,7 +16,7 @@ jobs:
         run: |
           curl -fL --retry 3 --retry-delay 2 \
             -o jbr.tar.gz \
-            https://github.com/JetBrains/JetBrainsRuntime/releases/download/jbr-release-21.0.11b1163.116/jbr-21.0.11-osx-aarch64-b1163.116.tar.gz
+            https://cache-redirector.jetbrains.com/intellij-jbr/jbr-21.0.11-osx-aarch64-b1163.116.tar.gz
           rm -rf jbr-unpacked jre-macos-arm64.zip
           mkdir -p jbr-unpacked
           tar -xzf jbr.tar.gz -C jbr-unpacked --strip-components=1
