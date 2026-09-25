@@ -10,7 +10,7 @@ This repository hosts pre-packaged, verified binary runtime dependencies require
 
 | Component | Upstream Project | License | File Name |
 | :--- | :--- | :--- | :--- |
-| **Java 21+ Runtime (JBR)** | [JetBrains/JetBrainsRuntime](https://github.com/JetBrains/JetBrainsRuntime) / OpenJDK | GPLv2 + Classpath Exception | jre-windows-x64.zip |
+| **Java 21+ Runtime** | [Eclipse Temurin](https://adoptium.net/) / OpenJDK | GPLv2 + Classpath Exception | jre-windows-x64.zip / jre-macos-arm64.zip |
 | **Android Platform Tools** | [Google Android SDK](https://developer.android.com/tools/releases/platform-tools) | Apache License 2.0 | platform-tools-windows.zip / platform-tools-darwin.zip |
 | **LSPatch Portable Core** | [LSPosed/LSPatch](https://github.com/LSPosed/LSPatch) | GPLv3 | lspatch.jar |
 | **GBF-Accelerator Module** | [Sagisawa/GBF-Accelerator](https://github.com/Sagisawa/GBF-Accelerator) | Apache 2.0 | xposed-release.apk |
