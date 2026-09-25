@@ -9,19 +9,23 @@ permissions:
   contents: write
 
 jobs:
-  upload-macos-jbr:
-    runs-on: ubuntu-latest
+  upload-macos-java21:
+    runs-on: macos-14
     steps:
-      - name: Download JetBrains Runtime 21
+      - name: Install Java 21 ARM64
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21.0.11'
+          architecture: aarch64
+
+      - name: Package portable Java runtime
         run: |
-          curl -fL --retry 3 --retry-delay 2 \
-            -o jbr.tar.gz \
-            https://cache-redirector.jetbrains.com/intellij-jbr/jbr-21.0.11-osx-aarch64-b1163.116.tar.gz
-          rm -rf jbr-unpacked jre-macos-arm64.zip
-          mkdir -p jbr-unpacked
-          tar -xzf jbr.tar.gz -C jbr-unpacked --strip-components=1
-          (cd jbr-unpacked && zip -qr ../jre-macos-arm64.zip .)
-          sha256sum jre-macos-arm64.zip
+          java -version
+          rm -rf jre-macos-arm64.zip
+          (cd "$JAVA_HOME" && zip -qr "$GITHUB_WORKSPACE/jre-macos-arm64.zip" .)
+          shasum -a 256 jre-macos-arm64.zip
+          unzip -l jre-macos-arm64.zip | head -20
 
       - name: Upload release asset
         env:
