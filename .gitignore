@@ -1,0 +1,5 @@
+﻿# Ignore release binaries in git history (they are published as GitHub Release assets)
+*.zip
+*.jar
+*.apk
+*.exe
