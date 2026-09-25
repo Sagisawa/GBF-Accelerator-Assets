@@ -645,3 +645,13 @@ copy of the Program in return for a fee.
 
                      END OF TERMS AND CONDITIONS
 ```
+
+
+## Eclipse Temurin / OpenJDK Runtime
+
+The `jre-macos-arm64.zip` asset is built from Eclipse Temurin 21 (OpenJDK) for macOS arm64.
+
+Eclipse Adoptium states that Eclipse Temurin binaries are distributed under the GNU General Public License v2 with the Classpath Exception. The included runtime archive retains the upstream license and notice files.
+
+- Eclipse Adoptium: https://adoptium.net/
+- License information: https://adoptium.net/docs/faq
