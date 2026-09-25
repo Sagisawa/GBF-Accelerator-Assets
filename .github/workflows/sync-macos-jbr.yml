@@ -15,12 +15,16 @@ jobs:
       - name: Download JetBrains Runtime 21
         run: |
           curl -fL --retry 3 --retry-delay 2 \
-            -o jre-macos-arm64.tar.gz \
+            -o jbr.tar.gz \
             https://github.com/JetBrains/JetBrainsRuntime/releases/download/jbr-release-21.0.11b1163.116/jbr-21.0.11-osx-aarch64-b1163.116.tar.gz
-          sha256sum jre-macos-arm64.tar.gz
+          rm -rf jbr-unpacked jre-macos-arm64.zip
+          mkdir -p jbr-unpacked
+          tar -xzf jbr.tar.gz -C jbr-unpacked --strip-components=1
+          (cd jbr-unpacked && zip -qr ../jre-macos-arm64.zip .)
+          sha256sum jre-macos-arm64.zip
 
       - name: Upload release asset
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release upload v1.0.0 jre-macos-arm64.tar.gz --repo "${{ github.repository }}" --clobber
+          gh release upload v1.0.0 jre-macos-arm64.zip --repo "${{ github.repository }}" --clobber
